@@ -558,6 +558,37 @@ int SCH_REFERENCE_LIST::CheckAnnotation( wxArrayString* aMessageList )
             error++;
             break;
         }
+
+        // Error if multi-unit symbol is missing a part / parts.
+        //
+        if( componentFlatList[ii].GetLibPart()->IsMulti() )
+        {
+
+            int NumberOfUnits = componentFlatList[ii].GetLibPart()->GetNumberOfUnits(); // Not sure if legal
+
+            for( unsigned Unit = 1; Unit <= NumberOfUnits, Unit++ )
+            {
+                int found = FindUnit( ii, Unit );
+
+                if( found >= 0 )
+                    continue;
+                else
+                {
+                    componentFlatList[ii].m_Unit = Unit;
+
+                    msg.Printf( _( "Item %s%s is missing unit %s! \n" ),
+                            GetChars( componentFlatList[ii].GetRef() ),
+                            GetChars( componentFlatList[ii].m_NumRef ),
+                            GetChars( PART_LIB::SubReference( componentFlatList[ii].m_Unit ) ) );
+
+                    if( aMessageList )
+                        aMessageList->Add( msg );
+                    
+                    error++;
+                    break;
+                }
+            }
+        }
     }
 
     if( error )

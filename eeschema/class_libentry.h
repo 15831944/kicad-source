@@ -670,7 +670,7 @@ public:
     /**
      * Function IsMulti
      * @return true if the part has multiple units per part.
-     * When happens, the reference has a sub reference ti identify part
+     * When happens, the reference has a sub reference to identify part
      */
     bool IsMulti() const { return m_unitCount > 1; }
 

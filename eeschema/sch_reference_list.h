@@ -400,7 +400,7 @@ public:
     }
 
     /**
-     * Function GetUnit
+     * Function FindUnit
      * searches the sorted list of components for a another component with the same
      * reference and a given part unit.  Use this method to manage components with
      * multiple parts per package.

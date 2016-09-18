@@ -285,7 +285,7 @@ wxString LIB_PART::SubReference( int aUnit, bool aAddSeparator )
         int u;
         aUnit -= 1;     // Unit number starts to 1. now to 0.
 
-        while( aUnit >= 26 )    // more than one letter are needed
+        while( aUnit >= 26 )    // more than one letter is needed
         {
             u = aUnit / 26;
             subRef << wxChar( m_subpartFirstId + u -1 );
